@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" font-family="Inter,Arial,sans-serif" font-size="13">
+  <rect width="900" height="360" fill="#f6f5f1"/>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#555"/></marker></defs>
+  <g stroke="#555" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M140 180H190"/><path d="M330 180H380"/>
+    <path d="M520 160L570 90"/><path d="M520 180H570"/><path d="M520 200L570 270"/>
+    <path d="M710 90L760 160"/><path d="M710 180H760"/><path d="M710 270L760 200"/>
+  </g>
+  <rect x="20" y="145" width="120" height="70" rx="10" fill="#fff" stroke="#ccc"/>
+  <text x="80" y="175" text-anchor="middle" font-weight="600">Committee /</text><text x="80" y="193" text-anchor="middle" font-weight="600">member</text>
+  <rect x="190" y="135" width="140" height="90" rx="10" fill="#e9f2ec" stroke="#7aa37a"/>
+  <text x="260" y="165" text-anchor="middle" font-weight="700">Nemotron Nano</text><text x="260" y="185" text-anchor="middle">intent triage</text><text x="260" y="203" text-anchor="middle">(JSON)</text>
+  <rect x="380" y="125" width="140" height="110" rx="10" fill="#fff" stroke="#ccc"/>
+  <text x="450" y="152" text-anchor="middle" font-weight="700">Context</text><text x="450" y="172" text-anchor="middle">BM25 bye-laws [K#]</text><text x="450" y="190" text-anchor="middle">Tavily web [W#]</text><text x="450" y="208" text-anchor="middle">SQLite ledger + memory</text>
+  <rect x="570" y="55" width="140" height="70" rx="10" fill="#f1e8f7" stroke="#8b3fbf"/>
+  <text x="640" y="85" text-anchor="middle" font-weight="700">Nemotron Ultra</text><text x="640" y="103" text-anchor="middle">rulings, disputes</text>
+  <rect x="570" y="145" width="140" height="70" rx="10" fill="#e6f0f8" stroke="#2f7fbf"/>
+  <text x="640" y="175" text-anchor="middle" font-weight="700">Nemotron Super</text><text x="640" y="193" text-anchor="middle">notices, WhatsApp</text>
+  <rect x="570" y="235" width="140" height="70" rx="10" fill="#fff" stroke="#ccc"/>
+  <text x="640" y="265" text-anchor="middle" font-weight="700">Python tools</text><text x="640" y="283" text-anchor="middle">exact dues + interest</text>
+  <rect x="760" y="135" width="125" height="90" rx="10" fill="#e9f2ec" stroke="#7aa37a"/>
+  <text x="822" y="165" text-anchor="middle" font-weight="700">Nano</text><text x="822" y="185" text-anchor="middle">grounding</text><text x="822" y="203" text-anchor="middle">check → UI</text>
+  <text x="450" y="335" text-anchor="middle" fill="#666">All model calls: Nebius Token Factory (OpenAI-compatible API)</text>
+</svg>
