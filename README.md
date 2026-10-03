@@ -6,6 +6,8 @@ Maharashtra alone has over a lakh co-operative housing societies, almost all run
 
 SocietyMitra gives every committee a patient, multilingual co-secretary that **knows the rules, cites them, does the maths exactly, and drafts the paperwork** — in English, मराठी or हिन्दी.
 
+![SocietyMitra screenshot](docs/screenshot.png)
+
 ![architecture](docs/architecture.svg)
 
 ## What it does
@@ -33,12 +35,12 @@ All inference runs on **Nebius Token Factory** (OpenAI-compatible API, `https://
 
 Model IDs are resolved at startup from `/v1/models` (see `mitra/llm.py`), so the app keeps working if Nebius versions a model. You can pin IDs with env vars.
 
-**Where Token Factory accelerated the work:** one API key gave us three Nemotron sizes behind the same OpenAI-style endpoint, so tier routing was a one-line change per step; JSON mode on Nano made triage reliable; and Ultra's latency on Token Factory was low enough to use a 550B-class reasoning model in an interactive chat.
+**Where Token Factory accelerated the work:** one API key gives three Nemotron sizes behind the same OpenAI-style endpoint, so tier routing is a one-line change per step, and JSON output on Nano keeps triage structured. Because cheap steps go to Nano, each question needs only one call to the large Ultra reasoning model.
 
 ## Quick start
 
 ```bash
-git clone https://github.com/<you>/societymitra && cd societymitra
+git clone https://github.com/swapnilchaudhari007/societymitra && cd societymitra
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env            # add NEBIUS_API_KEY (and optionally TAVILY_API_KEY)
