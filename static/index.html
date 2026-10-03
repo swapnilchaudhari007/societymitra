@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SocietyMitra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f5f1;--panel:#fff;--ink:#1d2321;--muted:#6b726f;--line:#e4e2dc;--brand:#0f6b4f;--brand2:#e8f3ee;--warn:#b4531a;--warnbg:#fbeee5;--red:#b42318;--redbg:#fdecea;--chip:#eef0ed}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,"Noto Sans Devanagari",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px}
+header{display:flex;align-items:center;gap:14px;padding:12px 22px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.logo i{width:30px;height:30px;border-radius:8px;background:var(--brand);display:grid;place-items:center;color:#fff;font-style:normal;font-size:16px}
+.logo small{font-weight:500;color:var(--muted);font-size:13px}
+.sp{flex:1}
+.pill{font-size:12px;padding:5px 10px;border-radius:99px;background:var(--chip);color:var(--muted);white-space:nowrap}
+.pill.live{background:var(--brand2);color:var(--brand)}
+.pill.off{background:var(--warnbg);color:var(--warn)}
+select,button,input,textarea{font:inherit}
+select{border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.wrap{display:grid;grid-template-columns:200px 1fr 300px;gap:0;min-height:calc(100vh - 57px)}
+nav{border-right:1px solid var(--line);padding:16px 10px;background:var(--panel)}
+nav button{display:flex;width:100%;align-items:center;gap:10px;border:0;background:none;padding:10px 12px;border-radius:8px;cursor:pointer;color:var(--ink);text-align:left}
+nav button.on{background:var(--brand2);color:var(--brand);font-weight:600}
+nav .count{margin-left:auto;font-size:12px;background:var(--redbg);color:var(--red);border-radius:99px;padding:1px 7px}
+main{padding:22px 26px;overflow:auto}
+aside{border-left:1px solid var(--line);background:var(--panel);padding:16px;overflow:auto}
+h2{font-size:20px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;cursor:pointer;font-size:13px}
+.chips button:hover{border-color:var(--brand);color:var(--brand)}
+.thread{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
+.msg{max-width:760px;padding:14px 16px;border-radius:12px;line-height:1.55}
+.msg.me{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:3px}
+.msg.ai{background:var(--panel);border:1px solid var(--line);border-bottom-left-radius:3px}
+.msg.ai ul,.msg.ai ol{margin:6px 0;padding-left:20px}
+.msg .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:11px;border-radius:6px;padding:3px 7px;background:var(--chip);color:var(--muted)}
+.tag.ok{background:var(--brand2);color:var(--brand)}
+.tag.bad{background:var(--redbg);color:var(--red)}
+.cite{display:inline-block;font-size:11px;font-weight:600;background:var(--brand2);color:var(--brand);border-radius:5px;padding:0 5px;margin:0 1px;cursor:help}
+.src{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;font-size:13px;color:var(--muted)}
+.src div{margin:3px 0}
+.src a{color:var(--brand)}
+.wa{margin-top:10px;background:#e7f7ee;border:1px solid #c9ead8;border-radius:10px;padding:10px 12px;font-size:14px;white-space:pre-wrap}
+.wa b{display:block;font-size:12px;color:#137a46;margin-bottom:4px}
+.ask{display:flex;gap:10px;position:sticky;bottom:0;background:var(--bg);padding:10px 0}
+.ask textarea{flex:1;border:1px solid var(--line);border-radius:12px;padding:12px 14px;resize:none;height:54px;background:#fff}
+.ask button,.btn{background:var(--brand);color:#fff;border:0;border-radius:10px;padding:0 18px;cursor:pointer;font-weight:600}
+.btn{padding:8px 14px;font-size:13px}
+.btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;background:#fafaf8}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.card h4{margin:0 0 6px;display:flex;gap:8px;align-items:center}
+.card pre{white-space:pre-wrap;font-family:inherit;margin:8px 0 0;color:#333;font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi b{font-size:22px;display:block}
+.kpi span{color:var(--muted);font-size:13px}
+.trace h3{font-size:14px;margin:0 0 4px}
+.trace p{color:var(--muted);font-size:12px;margin:0 0 12px}
+.step{border-left:2px solid var(--line);padding:0 0 14px 12px;position:relative}
+.step:before{content:"";position:absolute;left:-6px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--tier,#999)}
+.step b{font-size:13px}
+.step div{font-size:12px;color:var(--muted)}
+.t-nano{--tier:#7aa37a}.t-super{--tier:#2f7fbf}.t-ultra{--tier:#8b3fbf}
+.legend{display:flex;gap:10px;font-size:11px;color:var(--muted);margin-bottom:12px}
+.legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;background:var(--tier)}
+.typing{color:var(--muted);font-size:14px}
+.hide{display:none}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--muted);background:#fff;margin-bottom:14px}
+@media (max-width:980px){.wrap{grid-template-columns:1fr}nav{display:flex;overflow:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}nav button{width:auto;white-space:nowrap}aside{border-left:0;border-top:1px solid var(--line)}.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><i>&#2350;</i>SocietyMitra <small>AI co-secretary for housing societies</small></div>
+  <div class="sp"></div>
+  <span id="status" class="pill">checking…</span>
+  <select id="lang" title="Reply language">
+    <option value="en">English</option><option value="mr">मराठी</option><option value="hi">हिन्दी</option>
+  </select>
+</header>
+<div class="wrap">
+<nav>
+  <button data-tab="ask" class="on">💬 Ask Mitra</button>
+  <button data-tab="dues">₹ Dues <span class="count" id="defc"></span></button>
+  <button data-tab="complaints">🛠 Complaints</button>
+  <button data-tab="notices">📄 Notices</button>
+  <button data-tab="rules">📘 Rulebook</button>
+</nav>
+<main>
+  <section id="tab-ask">
+    <h2>Ask Mitra</h2>
+    <p class="sub">Rules, disputes, dues and notices — answered with citations, in English, मराठी or हिन्दी.</p>
+    <div class="chips" id="chips">
+      <button>Water is leaking from B-301's bathroom into B-201's ceiling. Who pays for the repair?</button>
+      <button>How much does B-302 owe including interest?</button>
+      <button>A member wants to rent out their flat. Do they need an NOC from the society?</button>
+      <button>Draft a polite reminder notice to all members with pending maintenance</button>
+      <button>Can the committee ban dogs in the lift?</button>
+      <button>Remember: AGM on 28 September approved lift replacement, budget Rs 6.5 lakh</button>
+    </div>
+    <div class="thread" id="thread"></div>
+    <div class="ask">
+      <textarea id="q" placeholder="Ask anything about your society… (Enter to send)"></textarea>
+      <button id="send">Ask</button>
+    </div>
+  </section>
+
+  <section id="tab-dues" class="hide">
+    <h2>Dues ledger</h2>
+    <p class="sub">Exact arrears with simple interest (AGM rate, capped at 21% p.a.). Maths is done in code, never by the model.</p>
+    <div class="kpis" id="kpis"></div>
+    <table><thead><tr><th>Flat</th><th>Member</th><th>Months unpaid</th><th class="num">Principal ₹</th><th class="num">Interest ₹</th><th class="num">Total ₹</th><th></th></tr></thead><tbody id="duesBody"></tbody></table>
+  </section>
+
+  <section id="tab-complaints" class="hide">
+    <h2>Complaints</h2>
+    <p class="sub">Every complaint gets a category, urgency, responsibility ruling and a draft reply.</p>
+    <div id="complaintList"></div>
+  </section>
+
+  <section id="tab-notices" class="hide">
+    <h2>Notices &amp; circulars</h2>
+    <p class="sub">Drafted by Mitra, ready to print or send on WhatsApp.</p>
+    <div id="noticeList"></div>
+  </section>
+
+  <section id="tab-rules" class="hide">
+    <h2>Rulebook</h2>
+    <p class="sub">Mitra answers from this knowledge. Upload your own society's bye-laws (.md or .txt) to make answers specific to you.</p>
+    <label class="drop">Drop or choose a bye-laws file <input type="file" id="upload" accept=".md,.txt" style="display:block;margin:8px auto 0"></label>
+    <div class="card"><h4>Society memory</h4><ul id="memList"></ul></div>
+    <div id="kbInfo" class="sub"></div>
+  </section>
+</main>
+<aside class="trace">
+  <h3>How Mitra thought</h3>
+  <p>Each step shows which NVIDIA Nemotron model on Nebius Token Factory handled it.</p>
+  <div class="legend"><span class="t-nano">Nano · fast</span><span class="t-super">Super · drafting</span><span class="t-ultra">Ultra · reasoning</span></div>
+  <div id="trace"><p>Ask something to see the plan.</p></div>
+</aside>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>(s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const inr=n=>Number(n).toLocaleString("en-IN",{maximumFractionDigits:0});
+function md(t){
+  let h=esc(t).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\[(K\d+|W\d+)\]/g,'<span class="cite" data-c="$1">$1</span>').replace(/\(Ref: (K\d+)\)/g,'<span class="cite">$1</span>');
+  const out=[];let list=null;
+  for(const line of h.split("\n")){
+    const b=line.match(/^\s*[-*•]\s+(.*)/),n=line.match(/^\s*\d+[.)]\s+(.*)/);
+    if(b||n){const tag=b?"ul":"ol";if(!list||list.tag!==tag){if(list)out.push(`</${list.tag}>`);out.push(`<${tag}>`);list={tag}}out.push(`<li>${(b||n)[1]}</li>`);continue}
+    if(list){out.push(`</${list.tag}>`);list=null}
+    out.push(line.trim()?line.replace(/^#+\s*/,"")+"<br>":"<br>");
+  }
+  if(list)out.push(`</${list.tag}>`);
+  return out.join("");
+}
+async function api(p,o){const r=await fetch(p,o);if(!r.ok)throw new Error((await r.json().catch(()=>({detail:r.statusText}))).detail);return r.json()}
+
+// tabs
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll("main section").forEach(s=>s.classList.toggle("hide",s.id!=="tab-"+b.dataset.tab));
+  ({dues:loadDues,complaints:loadComplaints,notices:loadNotices,rules:loadRules})[b.dataset.tab]?.();
+});
+
+async function loadStatus(){
+  const s=await api("/api/status");
+  const el=$("#status");
+  if(s.live){el.className="pill live";el.textContent="● Live · Nemotron on Nebius"+(s.tavily?" + Tavily":"")}
+  else{el.className="pill off";el.textContent="Offline mode · add NEBIUS_API_KEY"}
+  $("#kbInfo").textContent=`${s.knowledge_sections} rule sections loaded · models: ${Object.values(s.models).join(", ")}`;
+}
+
+function showTrace(r){
+  const steps=r.trace.map(t=>`<div class="step t-${t.tier}"><b>${t.step}</b><div>${t.tier.toUpperCase()} · ${esc(t.model)}</div><div>${(t.ms/1000).toFixed(1)}s${t.completion_tokens?` · ${t.prompt_tokens}→${t.completion_tokens} tokens`:""}</div></div>`).join("");
+  const web=(r.sources||[]).filter(s=>s.url).length;
+  $("#trace").innerHTML=`<div class="step"><b>intent: ${r.intent}</b><div>${r.triage?.needs_web?"needs live law lookup":"answerable from rulebook"}${web?` · ${web} web sources via Tavily`:""}</div></div>`+steps;
+}
+
+function addMsg(cls,html){const d=document.createElement("div");d.className="msg "+cls;d.innerHTML=html;$("#thread").appendChild(d);d.scrollIntoView({behavior:"smooth",block:"end"});return d}
+
+async function ask(text){
+  if(!text.trim())return;
+  addMsg("me",esc(text));$("#q").value="";
+  const wait=addMsg("ai",'<span class="typing">Mitra is checking the rules…</span>');
+  try{
+    const r=await api("/api/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:text,language:$("#lang").value})});
+    let h=md(r.answer);
+    if(r.whatsapp)h+=`<div class="wa"><b>WhatsApp version</b>${esc(r.whatsapp)}</div><button class="btn ghost" style="margin-top:8px" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText.replace('WhatsApp version',''))">Copy for WhatsApp</button>`;
+    if(r.ledger&&r.ledger.items)h+=`<div class="src">Ledger: ${r.ledger.months_unpaid} months · principal ₹${inr(r.ledger.principal)} · interest ₹${inr(r.ledger.interest)} · <b>total ₹${inr(r.ledger.total)}</b></div>`;
+    if(r.sources?.length)h+=`<div class="src">${r.sources.map(s=>`<div><span class="cite">${s.id}</span> ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>`:esc(s.title)}</div>`).join("")}</div>`;
+    const tags=[`<span class="tag">${r.intent}</span>`];
+    if(r.check)tags.push(r.check.grounded?'<span class="tag ok">✓ grounding check passed</span>':`<span class="tag bad" title="${esc((r.check.unsupported||[]).join("; "))}">⚠ ${r.check.unsupported?.length||""} unsupported claim(s) flagged</span>`);
+    if(r.complaint)tags.push(`<span class="tag">complaint #${r.complaint.id} · ${r.complaint.category} · ${r.complaint.urgency}</span>`);
+    h+=`<div class="meta">${tags.join("")}</div>`;
+    wait.innerHTML=h;showTrace(r);
+  }catch(e){wait.innerHTML=`<span class="tag bad">Error</span> ${esc(e.message)}`}
+}
+$("#send").onclick=()=>ask($("#q").value);
+$("#q").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();ask($("#q").value)}});
+$("#chips").querySelectorAll("button").forEach(b=>b.onclick=()=>ask(b.textContent));
+
+async function loadDues(){
+  const d=await api("/api/dues");
+  const owing=d.filter(x=>x.months_unpaid),def=d.filter(x=>x.defaulter);
+  $("#defc").textContent=def.length||"";
+  $("#kpis").innerHTML=`<div class="kpi"><b>₹${inr(owing.reduce((a,x)=>a+x.total,0))}</b><span>total outstanding</span></div><div class="kpi"><b>${owing.length} / ${d.length}</b><span>flats with arrears</span></div><div class="kpi"><b>${def.length}</b><span>defaulters (3+ months)</span></div>`;
+  $("#duesBody").innerHTML=d.map(x=>`<tr><td><b>${x.flat}</b></td><td>${esc(x.name)}</td><td>${x.months_unpaid?x.months_unpaid+(x.defaulter?' <span class="tag bad">defaulter</span>':''):'<span class="tag ok">clear</span>'}</td><td class="num">${inr(x.principal)}</td><td class="num">${inr(x.interest)}</td><td class="num"><b>${inr(x.total)}</b></td><td>${x.months_unpaid?`<button class="btn ghost" onclick="goAsk('Draft a polite but firm reminder to flat ${x.flat} about their pending dues')">Draft reminder</button>`:""}</td></tr>`).join("");
+}
+function goAsk(t){document.querySelector('nav [data-tab=ask]').click();ask(t)}
+async function loadComplaints(){
+  const c=await api("/api/complaints");
+  $("#complaintList").innerHTML=c.length?c.map(x=>`<div class="card"><h4>#${x.id} <span class="tag">${x.category}</span><span class="tag ${x.urgency==="high"?"bad":""}">${x.urgency}</span><span class="tag ${x.status==="resolved"?"ok":""}">${x.status}</span><span class="sp"></span>${x.status!=="resolved"?`<button class="btn ghost" onclick="resolveC(${x.id})">Mark resolved</button>`:""}</h4><div>${esc(x.text)}</div><pre>${md(x.reply)}</pre></div>`).join(""):'<p class="sub">No complaints yet. Try the leakage example in Ask Mitra.</p>';
+}
+async function resolveC(id){await api(`/api/complaints/${id}/resolve`,{method:"POST"});loadComplaints()}
+async function loadNotices(){
+  const n=await api("/api/notices");
+  $("#noticeList").innerHTML=n.length?n.map(x=>`<div class="card"><h4>${esc(x.title)} <span class="tag">${esc(x.language)}</span></h4><pre>${md(x.body)}</pre></div>`).join(""):'<p class="sub">No notices yet.</p>';
+}
+async function loadRules(){
+  const m=await api("/api/memory");$("#memList").innerHTML=m.map(f=>`<li>${esc(f)}</li>`).join("");
+}
+$("#upload").onchange=async e=>{
+  const f=e.target.files[0];if(!f)return;const fd=new FormData();fd.append("file",f);
+  const r=await api("/api/bylaws",{method:"POST",body:fd});
+  $("#kbInfo").textContent=`Added ${r.added_sections} sections from ${f.name}. Mitra now knows ${r.total} sections.`;
+};
+loadStatus();loadDues();
+</script>
+</body>
+</html>
