@@ -5,7 +5,7 @@ from datetime import date, datetime
 
 from .llm import TokenFactory, parse_json
 from .rag import KnowledgeBase
-from .store import dump, memory, remember, rows
+from .store import dump, memory, remember
 from .tools import all_dues, dues_for_flat, web_search
 
 LANGS = {"en": "English", "hi": "Hindi (Devanagari)", "mr": "Marathi (Devanagari)"}
