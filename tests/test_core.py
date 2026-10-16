@@ -62,3 +62,11 @@ def test_agent_routes_offline():
     assert r["intent"] == "notice" and r["whatsapp"]
     r = m.handle("Remember: AGM approved lift replacement")
     assert "lift" in r["memory"][-1]
+
+
+def test_resolve_unknown_complaint_is_404():
+    from fastapi.testclient import TestClient
+    import app as web
+
+    client = TestClient(web.app)
+    assert client.post("/api/complaints/999999/resolve").status_code == 404
