@@ -51,7 +51,9 @@ def ask(q: Ask):
     try:
         return mitra.handle(q.message.strip()[:4000], q.language)
     except Exception as e:  # surface model/API errors to the UI instead of a blank 500
-        raise HTTPException(502, f"Model call failed: {e}")
+        # log the detail server-side; don't echo provider errors (which can include keys/URLs) to the browser
+        print(f"[ask] model call failed: {e!r}")
+        raise HTTPException(502, "Model call failed. Please try again in a moment.")
 
 
 @app.get("/api/dues")
@@ -66,8 +68,10 @@ def complaints():
 
 @app.post("/api/complaints/{cid}/resolve")
 def resolve(cid: int):
-    con.execute("UPDATE complaints SET status='resolved' WHERE id=?", (cid,))
+    cur = con.execute("UPDATE complaints SET status='resolved' WHERE id=?", (cid,))
     con.commit()
+    if cur.rowcount == 0:
+        raise HTTPException(404, "No complaint with that id")
     return {"ok": True}
 
 
