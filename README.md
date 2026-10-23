@@ -1,5 +1,7 @@
 # SocietyMitra — an AI co-secretary for housing societies
 
+![NVIDIA](https://img.shields.io/badge/NVIDIA-Nemotron-76B900?logo=nvidia&logoColor=white) ![Nebius](https://img.shields.io/badge/Nebius-Token%20Factory-0B1D30) ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white) ![hackathon](https://img.shields.io/badge/hackathon-Nebius%20x%20NVIDIA-purple) [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
 **Nebius x NVIDIA Global AI Hackathon · Best Apps and Agents track**
 
 Maharashtra alone has over a lakh co-operative housing societies, almost all run by unpaid volunteer committees: a retired uncle as secretary, a working parent as treasurer. They field the same questions every week — *who pays for this leakage? can we stop tenants? how much interest can we charge?* — answer from memory, draft notices in Word at midnight, and calculate arrears in Excel. Mistakes turn into neighbour fights, Registrar complaints and court cases.
